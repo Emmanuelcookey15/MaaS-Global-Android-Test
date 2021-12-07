@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation.xml"
+    app:startDestination="@id/mapFragment">
+
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.maasglobal.whimtest.presentation.view.fragment.MapFragment"
+        android:label="fragment_map"
+        tools:layout="@layout/fragment_map" >
+        <action
+            android:id="@+id/action_mapFragment_to_locationDetailFragment"
+            app:destination="@id/locationDetailFragment" />
+        <action
+            android:id="@+id/action_mapFragment_to_routeFragment"
+            app:destination="@id/routeFragment" />
+        <action
+            android:id="@+id/action_mapFragment_to_locationDetailFragment2"
+            app:destination="@id/locationDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/locationDetailFragment"
+        android:name="com.maasglobal.whimtest.presentation.view.fragment.LocationDetailFragment"
+        android:label="fragment_location_detail"
+        tools:layout="@layout/fragment_location_detail" >
+        <action
+            android:id="@+id/action_locationDetailFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+        <action
+            android:id="@+id/action_locationDetailFragment_to_routeFragment"
+            app:destination="@id/routeFragment" />
+        <action
+            android:id="@+id/action_locationDetailFragment_to_wikiWebFragment"
+            app:destination="@id/wikiWebFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/routeFragment"
+        android:name="com.maasglobal.whimtest.presentation.view.fragment.RouteFragment"
+        android:label="fragment_route"
+        tools:layout="@layout/fragment_route" >
+        <action
+            android:id="@+id/action_routeFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+        <action
+            android:id="@+id/action_routeFragment_to_locationDetailFragment"
+            app:destination="@id/locationDetailFragment" />
+        <action
+            android:id="@+id/action_routeFragment_to_mapFragment2"
+            app:destination="@id/mapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/wikiWebFragment"
+        android:name="com.maasglobal.whimtest.presentation.view.fragment.WikiWebFragment"
+        android:label="fragment_wiki_web"
+        tools:layout="@layout/fragment_wiki_web" >
+        <action
+            android:id="@+id/action_wikiWebFragment_to_locationDetailFragment"
+            app:destination="@id/locationDetailFragment" />
+    </fragment>
+</navigation>

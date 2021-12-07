@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">WhimTest</string>
+    <string name="title_activity_maps">Map</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="poi_details">POI Details</string>
+    <string name="poi_title">POI Title</string>
+    <string name="poi_description">POI Description</string>
+    <string name="wikipedia">Wikipedia</string>
+    <string name="get_there">Get there</string>
+    <string name="wikipedia_link">Article Link</string>
+    <string name="api_key" />
+    <string name="direction">Direction</string>
+</resources>
