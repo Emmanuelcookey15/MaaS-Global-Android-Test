@@ -220,10 +220,13 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
 
     override fun onMarkerClick(p0: Marker): Boolean {
 
-        sharedModel.idPOI.value = p0.snippet
-        sharedModel.latLngPOI.value = p0.position
+        if (p0.position != sharedModel.latLngDevice.value) {
+            sharedModel.idPOI.value = p0.snippet
+            sharedModel.latLngPOI.value = p0.position
+            findNavController().navigate(R.id.action_mapFragment_to_locationDetailFragment)
+        }
 
-        findNavController().navigate(R.id.action_mapFragment_to_locationDetailFragment)
+
 
         return false
     }
