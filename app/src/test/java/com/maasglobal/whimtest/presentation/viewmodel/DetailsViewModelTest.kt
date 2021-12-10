@@ -26,7 +26,7 @@ class DetailsViewModelTest {
 
 
     @Mock
-    lateinit var detailsUseCase: ArticleDetailsUseCase
+    lateinit var articleDetailsUseCase: ArticleDetailsUseCase
 
 
     private lateinit var viewModel: DetailsViewModel
@@ -43,14 +43,14 @@ class DetailsViewModelTest {
     @Throws(Exception::class)
     fun setUp() {
         lifecycle = LifecycleRegistry(lifecycleOwner)
-        viewModel = DetailsViewModel(detailsUseCase, RxSingleSchedulers.TEST_SCHEDULER)
+        viewModel = DetailsViewModel(articleDetailsUseCase, RxSingleSchedulers.TEST_SCHEDULER)
         observer.let { viewModel.geoDetailData.observeForever(it) }
     }
 
 
     @Test
     fun testNull() {
-        Mockito.`when`(detailsUseCase.call("")).thenReturn(null)
+        Mockito.`when`(articleDetailsUseCase.call("")).thenReturn(null)
         Assert.assertNotNull(viewModel.geoDetailData)
         Assert.assertTrue(viewModel.geoDetailData.hasObservers())
     }
@@ -58,15 +58,19 @@ class DetailsViewModelTest {
     @Test
     fun testApiFetchDetailsDataSuccess() {
         // Mock API response
-        Mockito.`when`(detailsUseCase.call("234455")).thenReturn(Single.just(JsonObject()))
+        Mockito.`when`(articleDetailsUseCase.call("234455")).thenReturn(Single.just(JsonObject()))
         verify(observer)?.onChanged(State.success(JsonObject()))
     }
 
+
+
     @Test
     fun testApiFetchDetailsDataError() {
-        Mockito.`when`(detailsUseCase.call("234455")).thenReturn(Single.error(Throwable("Error fetching Articles Details")))
+
+        Mockito.`when`(articleDetailsUseCase.call("234455")).thenReturn(Single.error(Throwable("Error fetching Articles Details")))
         viewModel.getDetailOfPOI("234455")
         verify(observer)?.onChanged(State.error(message = "Error fetching Articles Details"))
+
     }
 
 

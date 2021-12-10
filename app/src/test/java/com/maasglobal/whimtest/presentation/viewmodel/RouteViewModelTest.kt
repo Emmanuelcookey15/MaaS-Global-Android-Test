@@ -27,6 +27,7 @@ class RouteViewModelTest {
     lateinit var directionUseCase: DirectionUseCase
 
 
+
     private lateinit var viewModel: RouteViewModel
 
     @Spy
