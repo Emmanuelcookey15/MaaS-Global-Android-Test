@@ -2,6 +2,7 @@ package com.maasglobal.data.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.maasglobal.data.entities.RxSingleSchedulers
 import com.maasglobal.data.networking.DirectionService
 import com.maasglobal.data.networking.WikipediaService
 import dagger.Module
@@ -56,6 +57,13 @@ object AppModule {
     @Singleton
     fun provideDirectionServiceApi(retrofit: Retrofit.Builder): DirectionService =
         retrofit.baseUrl(DirectionService.BASE_URL).build().create(DirectionService::class.java)
+
+
+    @Provides
+    @Singleton
+    fun providesScheduler(): RxSingleSchedulers {
+        return RxSingleSchedulers.DEFAULT
+    }
 
 
 

@@ -6,11 +6,10 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
 import androidx.lifecycle.Observer
 import com.maasglobal.data.entities.GeoSearchResponses
+import com.maasglobal.data.entities.RxSingleSchedulers
 import com.maasglobal.domain.usecase.NearbyArticleUseCase
 import com.maasglobal.whimtest.presentation.util.State
-import io.reactivex.Scheduler
-import io.reactivex.android.plugins.RxAndroidPlugins
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.Single
 import org.junit.After
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
@@ -20,12 +19,12 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
+import org.mockito.Mockito.verify
 import org.mockito.Spy
 import org.mockito.junit.MockitoJUnitRunner
-import java.util.concurrent.Callable
 
 
-@RunWith(MockitoJUnitRunner::class)
+@RunWith(MockitoJUnitRunner.Silent::class)
 class MapViewModelTest {
 
     @get:Rule
@@ -42,32 +41,47 @@ class MapViewModelTest {
     lateinit var observer: Observer<State<GeoSearchResponses>>
 
     @Mock
-    var lifecycleOwner: LifecycleOwner? = null
-    var lifecycle: Lifecycle? = null
+    lateinit var lifecycleOwner: LifecycleOwner
+    lateinit var lifecycle: Lifecycle
 
 
     @Before
+    @Throws(Exception::class)
     fun setUp() {
-//        MockitoAnnotations.initMocks(this)
-        RxAndroidPlugins.setInitMainThreadSchedulerHandler {
-                scheduler: Callable<Scheduler?>? -> Schedulers.trampoline() }
-        lifecycle = lifecycleOwner?.let { LifecycleRegistry(it) }
-        viewModel = MapViewModel(nearbyArticleUseCase)
+        lifecycle = LifecycleRegistry(lifecycleOwner)
+        viewModel = MapViewModel(nearbyArticleUseCase, RxSingleSchedulers.TEST_SCHEDULER)
         observer.let { viewModel.listOfGeoSearchData.observeForever(it) }
     }
+
 
 
     @Test
     fun testNull() {
         `when`(nearbyArticleUseCase.call("")).thenReturn(null)
         assertNotNull(viewModel.listOfGeoSearchData)
-        viewModel.listOfGeoSearchData.hasObservers().let { assertTrue(it) }
+        assertTrue(viewModel.listOfGeoSearchData.hasObservers())
+    }
+
+    @Test
+    fun testApiFetchDataSuccess() {
+        `when`(nearbyArticleUseCase.call("60.1831906|24.9285439")).thenReturn(Single.just(GeoSearchResponses()))
+        viewModel.loadArticlesNearby("60.1831906|24.9285439")
+        verify(observer)?.onChanged(State.success(data = GeoSearchResponses()))
     }
 
 
+    @Test
+    fun testApiFetchDataError() {
+        `when`(nearbyArticleUseCase.call("60.1831906|24.9285439")).thenReturn(Single.error(Throwable("Error fetching Wikipedia Articles Data")))
+        viewModel.loadArticlesNearby("60.1831906|24.9285439")
+        verify(observer)?.onChanged(State.error(message = "Error fetching Wikipedia Articles Data"))
+    }
+
 
     @After
+    @Throws(Exception::class)
     fun tearDown() {
+
 
     }
 }

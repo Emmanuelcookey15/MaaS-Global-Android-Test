@@ -99,10 +99,10 @@ class LocationDetailFragment : Fragment() {
 
             when (it.status) {
                 State.Status.SUCCESS -> {
-
-                    binding.tvPoiTitle.text = it.data?.title
-                    binding.tvPoiDescription.text = it?.data?.contentmodel
-                    adapter.setImageWikiList(it?.data?.images)
+                    val data = viewModel.toGeoDetailResponse(it.data!!, sharedModel.idPOI.value!!)
+                    binding.tvPoiTitle.text = data.title
+                    binding.tvPoiDescription.text = data.contentmodel
+                    adapter.setImageWikiList(data.images)
                 }
                 State.Status.ERROR -> {
                     val message = it.message.toString()

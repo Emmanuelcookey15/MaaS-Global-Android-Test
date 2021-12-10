@@ -55,6 +55,11 @@ class ImageWikiAdapter(private var imageWikiList: MutableList<ImageWiki>, var co
                 .error(R.drawable.ic_wikipedia)
                 .into(itemBinding.imageView)
 
+
+            itemBinding.root.setOnClickListener {
+
+            }
+
         }
 
     }

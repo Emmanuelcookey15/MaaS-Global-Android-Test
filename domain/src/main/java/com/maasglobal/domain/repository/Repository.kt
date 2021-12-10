@@ -5,7 +5,7 @@ import com.maasglobal.data.entities.DirectionResponses
 import com.maasglobal.data.entities.GeoSearchResponses
 import com.maasglobal.data.networking.DirectionService
 import com.maasglobal.data.networking.WikipediaService
-import io.reactivex.Observable
+import io.reactivex.Single
 import javax.inject.Inject
 
 open class Repository @Inject constructor(
@@ -14,16 +14,16 @@ open class Repository @Inject constructor(
 ): RemoteRepo {
 
 
-    override fun loadImageWiki(pageId: String): Observable<JsonObject> {
+    override fun loadImageWiki(pageId: String): Single<JsonObject> {
         return wikipediaService.getDetailOfArticles(pageId)
     }
 
 
-    override fun loadNearbyArticle(gscoord: String): Observable<GeoSearchResponses> {
+    override fun loadNearbyArticle(gscoord: String): Single<GeoSearchResponses> {
         return wikipediaService.getNearbyArticles(gscoord)
     }
 
-    override fun loadRoutes(origin: String, destination: String, apiKey: String): Observable<DirectionResponses>{
+    override fun loadRoutes(origin: String, destination: String, apiKey: String): Single<DirectionResponses>{
         return directionService.getDirection(origin, destination, apiKey)
     }
 
