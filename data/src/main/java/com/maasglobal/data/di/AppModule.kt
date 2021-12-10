@@ -2,7 +2,7 @@ package com.maasglobal.data.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.maasglobal.data.entities.RxSingleSchedulers
+import com.maasglobal.data.rx.RxSingleSchedulers
 import com.maasglobal.data.networking.DirectionService
 import com.maasglobal.data.networking.WikipediaService
 import dagger.Module

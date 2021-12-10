@@ -22,6 +22,11 @@ import com.maasglobal.whimtest.databinding.ActivityMapsBinding
 import java.io.IOException
 
 
+/**
+ * Please Note that I am no longer using this Activity in the project
+ * I decided to use navigation component in building the app,
+ * So as to maximize the use of the Jetpack library in the project.
+ * */
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private lateinit var map: GoogleMap

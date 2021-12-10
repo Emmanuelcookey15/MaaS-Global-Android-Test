@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.google.gson.JsonObject
 import com.maasglobal.data.entities.GeoDetailResponse
 import com.maasglobal.data.entities.ImageWiki
-import com.maasglobal.data.entities.RxSingleSchedulers
+import com.maasglobal.data.rx.RxSingleSchedulers
 import com.maasglobal.domain.usecase.ArticleDetailsUseCase
 import com.maasglobal.whimtest.presentation.util.State
 import dagger.hilt.android.lifecycle.HiltViewModel

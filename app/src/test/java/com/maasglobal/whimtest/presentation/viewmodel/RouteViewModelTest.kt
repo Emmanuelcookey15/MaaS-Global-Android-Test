@@ -6,7 +6,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
 import androidx.lifecycle.Observer
 import com.maasglobal.data.entities.DirectionResponses
-import com.maasglobal.data.entities.RxSingleSchedulers
+import com.maasglobal.data.rx.RxSingleSchedulers
 import com.maasglobal.domain.usecase.DirectionUseCase
 import com.maasglobal.whimtest.presentation.util.State
 import io.reactivex.Single
