@@ -6,7 +6,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
 import androidx.lifecycle.Observer
 import com.maasglobal.data.entities.GeoSearchResponses
-import com.maasglobal.data.entities.RxSingleSchedulers
+import com.maasglobal.data.rx.RxSingleSchedulers
 import com.maasglobal.domain.usecase.NearbyArticleUseCase
 import com.maasglobal.whimtest.presentation.util.State
 import io.reactivex.Single
@@ -61,6 +61,7 @@ class MapViewModelTest {
         assertNotNull(viewModel.listOfGeoSearchData)
         assertTrue(viewModel.listOfGeoSearchData.hasObservers())
     }
+
 
     @Test
     fun testApiFetchDataSuccess() {

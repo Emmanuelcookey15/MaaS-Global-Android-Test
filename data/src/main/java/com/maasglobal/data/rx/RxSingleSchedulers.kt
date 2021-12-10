@@ -1,4 +1,4 @@
-package com.maasglobal.data.entities
+package com.maasglobal.data.rx
 
 import io.reactivex.Single
 import io.reactivex.SingleTransformer

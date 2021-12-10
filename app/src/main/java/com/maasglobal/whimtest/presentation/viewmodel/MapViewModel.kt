@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.maasglobal.data.entities.GeoSearchResponses
-import com.maasglobal.data.entities.RxSingleSchedulers
+import com.maasglobal.data.rx.RxSingleSchedulers
 import com.maasglobal.domain.usecase.NearbyArticleUseCase
 import com.maasglobal.whimtest.presentation.util.State
 import dagger.hilt.android.lifecycle.HiltViewModel

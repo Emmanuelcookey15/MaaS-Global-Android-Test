@@ -6,7 +6,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
 import androidx.lifecycle.Observer
 import com.google.gson.JsonObject
-import com.maasglobal.data.entities.RxSingleSchedulers
+import com.maasglobal.data.rx.RxSingleSchedulers
 import com.maasglobal.domain.usecase.ArticleDetailsUseCase
 import com.maasglobal.whimtest.presentation.util.State
 import io.reactivex.Single
@@ -38,6 +38,7 @@ class DetailsViewModelTest {
     lateinit var lifecycleOwner: LifecycleOwner
     lateinit var lifecycle: Lifecycle
 
+
     @Before
     @Throws(Exception::class)
     fun setUp() {
@@ -45,7 +46,6 @@ class DetailsViewModelTest {
         viewModel = DetailsViewModel(detailsUseCase, RxSingleSchedulers.TEST_SCHEDULER)
         observer.let { viewModel.geoDetailData.observeForever(it) }
     }
-
 
 
     @Test
@@ -68,6 +68,7 @@ class DetailsViewModelTest {
         viewModel.getDetailOfPOI("234455")
         verify(observer)?.onChanged(State.error(message = "Error fetching Articles Details"))
     }
+
 
 
     @After
