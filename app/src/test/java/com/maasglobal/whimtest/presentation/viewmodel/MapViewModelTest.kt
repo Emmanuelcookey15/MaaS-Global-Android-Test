@@ -82,6 +82,6 @@ class MapViewModelTest {
     @Throws(Exception::class)
     fun tearDown() {
 
-
     }
+
 }
