@@ -27,6 +27,7 @@ import org.mockito.junit.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner.Silent::class)
 class MapViewModelTest {
 
+
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()
 
@@ -84,5 +85,6 @@ class MapViewModelTest {
     fun tearDown() {
 
     }
+
 
 }
