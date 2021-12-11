@@ -1,14 +1,10 @@
 package com.maasglobal.whimtest.presentation.view.fragment
 
-import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.Canvas
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -18,12 +14,15 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapsInitializer
 import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.model.*
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.PolylineOptions
 import com.google.maps.android.PolyUtil
 import com.maasglobal.whimtest.BuildConfig
 import com.maasglobal.whimtest.R
 import com.maasglobal.whimtest.databinding.FragmentRouteBinding
 import com.maasglobal.whimtest.presentation.util.State
+import com.maasglobal.whimtest.presentation.util.bitmapDescriptorFromVector
 import com.maasglobal.whimtest.presentation.util.snack
 import com.maasglobal.whimtest.presentation.viewmodel.RouteViewModel
 import com.maasglobal.whimtest.presentation.viewmodel.ShareViewModel
@@ -140,16 +139,6 @@ class RouteFragment : Fragment(), OnMapReadyCallback {
             }
         })
 
-    }
-
-
-    private fun bitmapDescriptorFromVector(context: Context, vectorResId: Int): BitmapDescriptor? {
-        return ContextCompat.getDrawable(context, vectorResId)?.run {
-            setBounds(0, 0, intrinsicWidth, intrinsicHeight)
-            val bitmap = Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ARGB_8888)
-            draw(Canvas(bitmap))
-            BitmapDescriptorFactory.fromBitmap(bitmap)
-        }
     }
 
 
